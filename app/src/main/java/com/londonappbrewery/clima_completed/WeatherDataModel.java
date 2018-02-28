@@ -9,7 +9,7 @@ public class WeatherDataModel {
     // Member variables that hold our relevant weather inforomation.
     private String mTemperature;
     private String mCity;
-    private String mIconName;
+    private String mIcon;
     private int mCondition;
     private String mWind;
     private  String mCloud;
@@ -30,15 +30,14 @@ public class WeatherDataModel {
             WeatherDataModel weatherData = new WeatherDataModel();
 
             weatherData.mCity = jsonObject.getString("name");
-            weatherData.mCondition = jsonObject.getJSONArray("weather").getJSONObject(0).getInt("id");
-            weatherData.mIconName = updateWeatherIcon(weatherData.mCondition);
             weatherData.mWind = jsonObject.getJSONObject("wind").getString("speed");
             weatherData.mCloud = jsonObject.getJSONObject("clouds").getString("all");
             weatherData.mPressure = jsonObject.getJSONObject("main").getString("pressure");
             weatherData.mHumidity = jsonObject.getJSONObject("main").getString("humidity");
             weatherData.mSunrise = jsonObject.getJSONObject("sys").getString("sunrise");
-            //weatherData.mDescription = jsonObject.getJSONArray("weather").getJSONObject(2).getString("description");
-
+            weatherData.mDescription = jsonObject.getJSONArray("weather").getJSONObject(0).getString("description");
+            weatherData.mIcon = jsonObject.getJSONArray("weather").getJSONObject(0).getString("icon");
+            //weatherData.mDescription = jsonObject.getJSONObject("weather").getString("description");
             String weatherInfo = jsonObject.getString("weather");
 
             //Log.i("Weather content", weatherInfo);
@@ -102,9 +101,6 @@ public class WeatherDataModel {
         return mCity;
     }
 
-    public String getIconName() {
-        return mIconName;
-    }
 
     public String getmWind() {
         return mWind + "   ";
@@ -125,6 +121,11 @@ public class WeatherDataModel {
     public String getmSunrise() {
         return mSunrise+ "   ";
     }
-   public String getmDescription(){return mDescription;
+   public String getmDescription(){
+        return mDescription;
   }
+
+    public String getmIcon() {
+        return mIcon;
+    }
 }

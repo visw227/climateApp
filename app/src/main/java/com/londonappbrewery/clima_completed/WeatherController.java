@@ -66,13 +66,13 @@ public class WeatherController extends AppCompatActivity {
     LocationListener mLocationListener;
 
     WeatherDataModel wdm;
-    TextView mDesc ;
     TextView mWind ;
     TextView mCloud ;
     TextView mPress ;
     TextView mHumidty ;
     TextView mSunrise ;
     TextView mDescription;
+    TextView mIcon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,10 +84,9 @@ public class WeatherController extends AppCompatActivity {
         // API 26 and above does not require casting anymore.
 
         mCityLabel = findViewById(R.id.city);
-        mImageButton = findViewById(R.id.location);
 
 
-        mDesc = findViewById(R.id.weatherdescription);
+
         mDescription = findViewById(R.id.description);
         mWind = findViewById(R.id.windspeed);
         mCloud = findViewById(R.id.cloudstate);
@@ -95,11 +94,12 @@ public class WeatherController extends AppCompatActivity {
         mHumidty = findViewById(R.id.humidity);
         mSunrise = findViewById(R.id.sunrise);
         mTemperatureLabel = findViewById(R.id.weatherdegress);
+        mIcon = findViewById(R.id.icon);
         //mDescription = findViewById(R.id.description);
 
     }
 
-// ******************************* Can Creaate Buttons to implement Intents between both the apps************************
+// ******************************* Can Creaate Buttons to implement Intents between both the activities************************
 
 //        ImageButton changeCityButton = findViewById(R.id.changeCityButton);
 
@@ -338,14 +338,15 @@ public class WeatherController extends AppCompatActivity {
         mHumidty.setText(weather.getmHumidity());
         mPress.setText(weather.getmHumidity());
         mSunrise.setText(weather.getmSunrise());
+        mDescription.setText(weather.getmDescription());
+        //mIcon.setText(weather.getmIcon());
 
 
-//        Desc.setText();
+//
 
 
 
-        // Update the icon based on the resource id of the image in the drawable folder.
-        int resourceID = getResources().getIdentifier(weather.getIconName(), "drawable", getPackageName());
+
        // mWeatherImage.setImageResource(resourceID);
     }
 
